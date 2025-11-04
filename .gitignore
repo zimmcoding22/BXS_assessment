@@ -32,3 +32,6 @@ env.bak/
 # Logs
 *.log
 *.tmp
+
+*.tgz
+*.tar.gz
