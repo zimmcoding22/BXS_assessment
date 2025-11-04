@@ -105,6 +105,11 @@ MONGO_URI="mongodb+srv://<USERNAME>:<PASSWORD>@cluster0.xxxxx.mongodb.net/?appNa
 - Allow all hosts or restrict to specific IPs if necessary
 - run python load_db.py using the generated URI and db
 
+## Task 6 Frontend/React
+
+-Run with npm install and npm start
+-Ensure that a local api URL is configured
+
 
 
 

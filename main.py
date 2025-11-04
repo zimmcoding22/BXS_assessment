@@ -4,13 +4,21 @@ from pathlib import Path
 from typing import Optional, Dict
 
 import pandas as pd
+import etl
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, field_validator
 
-import etl
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="BXS ETL API", version="1.0.0")
-
+#allow react app to communicate with API
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class IngestRequest(BaseModel):
     """
