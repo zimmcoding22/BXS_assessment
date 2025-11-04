@@ -55,12 +55,12 @@ def list_objects_in_prefix(bucket_name: str, prefix: str = "") -> list[str]:
         response = s3_client.list_objects_v2(Bucket=bucket_name, Prefix=prefix)
         contents = response.get("Contents", [])
         keys = [obj["Key"] for obj in contents]
-        print(f"📂 Found {len(keys)} object(s) in s3://{bucket_name}/{prefix}")
+        print(f"Found {len(keys)} object(s) in s3://{bucket_name}/{prefix}")
         return keys
     except ClientError as e:
         print(f"Failed to list objects in s3://{bucket_name}/{prefix}: {e}")
         raise
-        
+
 
 # Example local test execution
 if __name__ == "__main__":
@@ -68,7 +68,7 @@ if __name__ == "__main__":
     test_file = Path("output/order_summary.csv")
 
     if not bucket:
-        print("⚠No S3 bucket configured in environment (.env).")
+        print("No S3 bucket configured in environment (.env).")
     elif not test_file.exists():
         print(f"Test file not found at {test_file}")
     else:
