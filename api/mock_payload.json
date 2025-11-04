@@ -1,0 +1,6 @@
+{
+  "orders_url": "s3://your-bucket/orders.csv",
+  "trades_url": "s3://your-bucket/trades.csv",
+  "nbbo_url": "s3://your-bucket/nbbo.csv",
+  "notes": "In production, ingest from S3/SFTP; here, read local files."
+}
