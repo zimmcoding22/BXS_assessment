@@ -1,0 +1,34 @@
+# Environment files
+.env
+.env.*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.sqlite3
+
+# Virtual environments
+venv/
+.env/
+.venv/
+ENV/
+env/
+env.bak/
+
+# macOS
+.DS_Store
+
+# Output and data
+/output/
+*.csv
+
+# VSCode / IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+*.tmp
