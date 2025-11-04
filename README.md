@@ -51,6 +51,43 @@ To start the FastAPI server locally and test endpoints:
 ```bash
 uvicorn main:app --reload
 
+Example successful requests
+
+#check health
+-curl -X GET http://127.0.0.1:8000/health response: {"status": "ok"}
+#trigger ETL pipe
+-curl -X POST http://127.0.0.1:8000/ingest \
+  -H "Content-Type: application/json" \
+  -d '{
+        "orders_url": "data/orders_sample.csv",
+        "trades_url": "data/trades_sample.csv",
+        "nbbo_url": "data/nbbo_sample.csv"
+      }' 
+response:
+{
+  "status": "ok",
+  "output_files": {
+    "fills": "output/fills_normalized.csv",
+    "summary": "output/order_summary.csv"
+  },
+  "rows": {
+    "fills": 10000,
+    "summary": 50
+  }
+}
+#specific order summary
+-curl -X GET http://127.0.0.1:8000/orders/O00011 
+response: 
+{
+  "order_id": "O00011",
+  "total_order_qty": 1463,
+  "filled_qty": 1463,
+  "vwap": 98.85,
+  "total_pi_dollars": 407079.75,
+  "fill_rate": 1.0
+}
+
+
 ## Task 3 — Database Persistence (MongoDB)
 
 Create a free cluster on https://cloud.mongodb.com/
