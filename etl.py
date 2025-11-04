@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 from typing import Iterator
+from s3_utils import upload_file_to_s3
+import os
 
 DATA_DIR = Path("data")
 OUTPUT_DIR = Path("output")
@@ -117,7 +119,16 @@ def run_etl() -> None:
     summary["fill_rate"] = summary["filled_qty"] / summary["total_order_qty"]
     summary.to_csv(OUTPUT_DIR / "order_summary.csv", index=False)
     print("Wrote order_summary.csv")
-
+    bucket = os.getenv("S3_BUCKET_NAME")
+    if bucket:
+        try:
+            upload_file_to_s3(OUTPUT_DIR / "order_summary.csv", bucket, prefix="etl-results/")
+            upload_file_to_s3(OUTPUT_DIR / "fills_normalized.csv", bucket, prefix="etl-results/")
+            print(f"Uploaded ETL outputs to s3://{bucket}/etl-results/")
+        except Exception as e:
+            print(f"S3 upload failed or skipped: {e}")
+    else:
+        print("No S3_BUCKET_NAME in environment. Skipping S3 upload.") #I didn't create an actual AWS s3 instance for this exercise, so this will always happen
 
 def run_etl_from_paths(*, orders_path: Path, trades_path: Path, nbbo_path: Path) -> dict:
     """

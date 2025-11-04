@@ -108,7 +108,20 @@ MONGO_URI="mongodb+srv://<USERNAME>:<PASSWORD>@cluster0.xxxxx.mongodb.net/?appNa
 ## Task 6 Frontend/React
 
 -Run with npm install and npm start
--Ensure that a local api URL is configured
+-Ensure that a local api URL is configured# Task 7 — AWS S3 Integration
+
+## Task 7 s3
+This task integrates Amazon S3 into the ETL workflow using **boto3**.
+
+**I did not create a real AWS s3 bucket for this. This can be done directly in the AWS s3 console where credentials provided would be added to .env
+
+### Key Features
+- `s3_utils.py` handles uploads and listings.
+- Reads credentials from environment variables (`.env`).
+- Automatically uploads ETL outputs (`order_summary.csv`, `fills_normalized.csv`) to the configured S3 bucket.
+
+
+
 
 
 
