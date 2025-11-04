@@ -1,7 +1,6 @@
 import os
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from pathlib import Path
 
 import pandas as pd
 import pytest
@@ -13,10 +12,6 @@ from etl import (
     run_etl,
     OUTPUT_DIR,
 )
-
-# Ensure parent directory is importable
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
 
 @pytest.fixture(scope="module")
 def nbbo_df():

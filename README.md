@@ -37,6 +37,11 @@ Sample CSVs live in `data/`. Treat them as if they were large files (demonstrate
 
 ----------------------------------------------------------------
 
+## Task 1 - ETL
+
+-Run etl.py with provided data
+-to run test file, run pytest -v
+
 ## Task 2 — API (FastAPI)
 
 This task exposes a small REST API using FastAPI with the following endpoints:
